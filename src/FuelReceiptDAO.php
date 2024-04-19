@@ -13,6 +13,19 @@ class FuelReceiptDAO {
         $this->pdo = DB::getInstance()->getConnection();
     }
 
+    public function storeReceipt(FuelReceiptDTO $receipt): bool
+    {
+        $sql = <<<MySQL
+            INSERT INTO fuel_receipts (license_plate, date_time, odometer, petrol_station, fuel_type, refueled, total, currency, fuel_price)
+            VALUES (:licencePlate, :dateTime, :odometer, :petrolStation, :fuelType, :refueled, :total, :currency, :fuelPrice)
+            MySQL;
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($receipt->toArray());
+
+        return true;
+    }
+
     public function getAllFuelReceipts(): ?array
     {
         try {

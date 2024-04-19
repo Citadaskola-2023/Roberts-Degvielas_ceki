@@ -12,22 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         currency: $_POST['currency'],
     );
 
-    try {
-        $pdo = new PDO("mysql:host=mysql;dbname=fuel;charset=utf8mb4", 'root', 'root', [
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        ]);
-    } catch (PDOException $e) {
-        throw new PDOException($e->getMessage(), (int)$e->getCode());
-    }
-
-    $sql = <<<MySQL
-        INSERT INTO fuel_receipts (license_plate, date_time, odometer, petrol_station, fuel_type, refueled, total, currency, fuel_price)
-        VALUES (:licencePlate, :dateTime, :odometer, :petrolStation, :fuelType, :refueled, :total, :currency, :fuelPrice)
-        MySQL;
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute($receipt->toArray());
-
+    $fuelReceiptDAO = new \App\FuelReceiptDAO();
+    $fuelReceiptDAO->storeReceipt($receipt);
 }
 
 
