@@ -16,7 +16,11 @@ class FuelReceiptDAO {
     public function getAllFuelReceipts(): ?array
     {
         try {
-            $statement = $this->pdo->prepare("SELECT * FROM fuel_receipts");
+            $sql = <<<MySQL
+                SELECT * FROM fuel_receipts
+                MySQL;
+
+            $statement = $this->pdo->prepare($sql);
             $statement->execute();
             return $statement->fetchAll();
         } catch (PDOException $e) {
