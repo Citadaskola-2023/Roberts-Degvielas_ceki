@@ -26,6 +26,7 @@ class FuelReceiptDTO
             'petrolStation' => $this->petrolStation,
             'fuelType' => $this->fuelType,
             'refueled' => $this->refueled,
+            'total' => 69,
             'currency' => $this->currency,
             'fuelPrice' => $this->fuelPrice,
         ];
