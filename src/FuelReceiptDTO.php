@@ -15,8 +15,20 @@ class FuelReceiptDTO
         public string $fuelPrice,
     )
     {
-        var_dump($this);
-        die();
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'licencePlate' => $this->licencePlate,
+            'dateTime' => $this->dateTime,
+            'odometer' => $this->odometer,
+            'petrolStation' => $this->petrolStation,
+            'fuelType' => $this->fuelType,
+            'refueled' => $this->refueled,
+            'currency' => $this->currency,
+            'fuelPrice' => $this->fuelPrice,
+        ];
     }
 
 }
