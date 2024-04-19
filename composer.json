@@ -1,0 +1,19 @@
+{
+    "name": "roberts/fuel_receipts",
+    "type": "project",
+    "license": "UNLICENCED",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Roberts Rozkalns",
+            "email": "roberts.rozkalns@citadaskola.lv"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

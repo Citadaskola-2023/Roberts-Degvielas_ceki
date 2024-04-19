@@ -1,7 +1,5 @@
 <?php
 
-require __DIR__ . '/../../src/FuelReceiptDTO.php';
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $receipt = new \App\FuelReceiptDTO(
         licencePlate: $_POST['license_plate'],
