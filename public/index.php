@@ -10,8 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         petrolStation: $_POST['petrol_station'],
         fuelType: $_POST['fuel_type'],
         refueled: $_POST['refueled'],
+        total: $_POST['total'],
         currency: $_POST['currency'],
-        fuelPrice: $_POST['fuel_price'],
     );
 
     try {
@@ -75,6 +75,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" name="refueled" id="refueled" placeholder="Refueled (liters)">
         </div>
         <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="fuel_price">Fuel Price:</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" step="0.01" name="total" id="total" placeholder="Receipt total">
+        </div>
+        <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="currency">Currency:</label>
             <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="currency" id="currency">
                 <option value="">Select Currency</option>
@@ -95,10 +99,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <option value="SAR">Saudi Riyal (SAR)</option>
                 <option value="TRY">Turkish Lira (TRY)</option>
             </select>
-        </div>
-        <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="fuel_price">Fuel Price:</label>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" step="0.01" name="fuel_price" id="fuel_price" placeholder="Fuel Price">
         </div>
         <div class="flex items-center justify-between">
             <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Submit">

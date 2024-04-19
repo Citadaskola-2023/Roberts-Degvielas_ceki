@@ -11,10 +11,15 @@ class FuelReceiptDTO
         public string $petrolStation,
         public string $fuelType,
         public string $refueled,
+        public string $total,
         public string $currency,
-        public string $fuelPrice,
     )
     {
+    }
+
+    private function getFuelPrice(): float
+    {
+        return $this->total / $this->refueled;
     }
 
     public function toArray(): array
@@ -26,9 +31,9 @@ class FuelReceiptDTO
             'petrolStation' => $this->petrolStation,
             'fuelType' => $this->fuelType,
             'refueled' => $this->refueled,
-            'total' => 69,
+            'total' => $this->total,
             'currency' => $this->currency,
-            'fuelPrice' => $this->fuelPrice,
+            'fuelPrice' => $this->getFuelPrice(),
         ];
     }
 
