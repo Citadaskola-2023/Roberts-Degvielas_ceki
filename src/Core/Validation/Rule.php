@@ -2,7 +2,7 @@
 
 namespace App\Core\Validation;
 
-class Rule
+readonly abstract class Rule
 {
-
+    abstract public function check(mixed $value): true;
 }

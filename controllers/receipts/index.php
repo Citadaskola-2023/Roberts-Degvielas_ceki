@@ -37,8 +37,8 @@ class ReceiptsQueryBuilder {
 $filter = new Filter();
 $filter->from = new DateTimeImmutable('-1 week');
 $filter->to = new DateTimeImmutable('now');
-//$filter->car_number = 'KR-1916';
-$filter->car_number = 'G-01';
+$filter->car_number = 'AB-1234';
+//$filter->car_number = 'G-01';
 
 $ids = (new ReceiptsQueryBuilder())->getIdsFromFilter($filter);
 

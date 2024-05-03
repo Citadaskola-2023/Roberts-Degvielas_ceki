@@ -1,34 +1,59 @@
 <?php include __DIR__ . '/../partial/header.php'; ?>
 
+<?php
+/** @var ?\App\Core\Validation $validation */
+?>
+
 <h1 class="text-3xl font-semibold mb-4">Fuel Receipt Form</h1>
 <form action="/receipts/store" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
     <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="license_plate">License Plate:</label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="license_plate" id="license_plate" placeholder="License Plate">
+        <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="license_plate" id="license_plate" placeholder="License Plate"
+            value="<?= $validation?->old('license_plate') ?? '' ?>"
+        >
     </div>
     <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="date_time">Date and Time:</label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="datetime-local" name="date_time" id="date_time">
+        <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="datetime-local" name="date_time" id="date_time"
+            value="<?= $validation?->old('date_time') ?? '' ?>"
+        >
     </div>
     <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="fuel_price">Odometer:</label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" step="1" name="odometer" id="odometer" placeholder="km">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="odometer">Odometer:</label>
+        <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" step="1" name="odometer" id="odometer" placeholder="km"
+            value="<?= $validation?->old('odometer') ?? '' ?>"
+        >
     </div>
     <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="petrol_station">Petrol Station:</label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="petrol_station" id="petrol_station" placeholder="Petrol Station">
+        <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="petrol_station" id="petrol_station" placeholder="Petrol Station"
+            value="<?= $validation?->old('petrol_station') ?? '' ?>"
+        >
     </div>
     <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="fuel_type">Fuel Type:</label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="fuel_type" id="fuel_type" placeholder="Fuel Type">
+        <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="fuel_type" id="fuel_type" placeholder="Fuel Type"
+            value="<?= $validation?->old('fuel_type') ?? '' ?>"
+        >
     </div>
     <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="refueled">Refueled (liters):</label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" name="refueled" id="refueled" placeholder="Refueled (liters)">
+        <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" name="refueled" id="refueled" placeholder="Refueled (liters)"
+            value="<?= $validation?->old('refueled') ?? '' ?>"
+        >
     </div>
     <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="fuel_price">Fuel Price:</label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" step="0.01" name="total" id="total" placeholder="Receipt total">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="total">Fuel Price:</label>
+        <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" step="0.01" name="total" id="total" placeholder="Receipt total"
+            value="<?= $validation?->old('total') ?? '' ?>"
+        >
     </div>
     <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="currency">Currency:</label>
@@ -53,7 +78,9 @@
         </select>
     </div>
     <div class="flex items-center justify-between">
-        <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Submit">
+        <input
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Submit"
+        >
     </div>
 </form>
 

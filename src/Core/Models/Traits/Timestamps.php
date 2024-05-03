@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Traits;
+namespace App\Core\Models\Traits;
 
 
 trait Timestamps

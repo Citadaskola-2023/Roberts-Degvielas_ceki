@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Core\Model;
-use App\Core\Traits\Timestamps;
+use App\Core\Models\Traits\Timestamps;
 
 class FuelReceipt extends Model
 {
