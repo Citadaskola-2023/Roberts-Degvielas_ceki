@@ -1,0 +1,1 @@
+INSERT INTO `fuel_receipts` (`id`, `license_plate`, `odometer`, `gmt`, `petrol_station`, `fuel_type`, `refueled`, `total`, `currency`, `fuel_price`, `created_at`, `updated_at`) VALUES (NULL, 'KR-1916', '291321', '2024-05-01 21:00:00', 'Liepāja, Neste II', 'diesel', '26.20', '44.20', 'EUR', '1.687023', '2024-05-02 05:06:51', '2024-05-02 06:15:44')
