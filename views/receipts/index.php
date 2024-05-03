@@ -16,16 +16,18 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($receipts as $receipt): ?>
+        <?php
+        /** @var \App\Models\FuelReceipt[] $receipts */
+        foreach ($receipts as $receipt): ?>
             <tr>
-                <td class="border px-4 py-2"><?php echo $receipt['license_plate']; ?></td>
-                <td class="border px-4 py-2"><?php echo $receipt['date_time']; ?></td>
-                <td class="border px-4 py-2"><?php echo $receipt['petrol_station']; ?></td>
-                <td class="border px-4 py-2"><?php echo $receipt['fuel_type']; ?></td>
-                <td class="border px-4 py-2"><?php echo $receipt['refueled']; ?></td>
-                <td class="border px-4 py-2"><?php echo $receipt['total']; ?></td>
-                <td class="border px-4 py-2"><?php echo $receipt['currency']; ?></td>
-                <td class="border px-4 py-2"><?php echo $receipt['fuel_price']; ?></td>
+                <td class="border px-4 py-2"><?= $receipt->license_plate; ?></td>
+                <td class="border px-4 py-2"><?= $receipt->gmt; ?></td>
+                <td class="border px-4 py-2"><?= $receipt->petrol_station; ?></td>
+                <td class="border px-4 py-2"><?= $receipt->fuel_type; ?></td>
+                <td class="border px-4 py-2"><?= $receipt->refueled; ?></td>
+                <td class="border px-4 py-2"><?= $receipt->total; ?></td>
+                <td class="border px-4 py-2"><?= $receipt->currency; ?></td>
+                <td class="border px-4 py-2"><?= $receipt->fuel_price; ?></td>
             </tr>
         <?php endforeach; ?>
         </tbody>
