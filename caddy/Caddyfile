@@ -1,0 +1,18 @@
+{
+	# Enable FrankenPHP
+	frankenphp
+	# Configure when the directive must be executed
+	order php_server before file_server
+}
+
+fuel.local {
+    root * public/
+	# Enable compression (optional)
+	encode zstd gzip
+	# Execute PHP files in the current directory and serve assets
+	php_server
+}
+
+phpmyadmin.fuel.local {
+    reverse_proxy phpmyadmin:80
+}

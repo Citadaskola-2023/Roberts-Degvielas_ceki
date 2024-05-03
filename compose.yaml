@@ -6,7 +6,10 @@ services:
     # image: dunglas/frankenphp:alpine
     build: .
     volumes:
-      - /$PWD:/app
+      - ./:/app
+      - caddy_data:/data
+      - caddy_config:/config
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
     ports:
       - "80:80"
       - "443:443"
@@ -25,12 +28,14 @@ services:
     image: phpmyadmin/phpmyadmin
     links:
       - mysql
-    ports:
-      - "8080:80"
     environment:
       PMA_HOST: mysql
       MYSQL_ROOT_PASSWORD: root
 
 volumes:
+  caddy_data:
+  caddy_config:
   db_data:
     driver: local
+
+
