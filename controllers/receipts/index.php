@@ -1,18 +1,46 @@
 <?php
 
-$sql = <<<MySQL
-    SELECT `id` FROM `fuel_receipts`
-    WHERE `license_plate` = :car_number
-    AND `gmt` BETWEEN :from AND :to
-MySQL;
+class Filter{
+    public ?string $car_number = null;
+    public DateTimeImmutable $from;
+    public DateTimeImmutable $to;
+}
 
-$result = \App\Core\DB::execute($sql, [
-    'car_number' => 'KR-1916',
-    'from' => gmdate('Y-m-d 00:00:00', strtotime('-1 week')),
-    'to' => gmdate('Y-m-d 00:00:00', strtotime('now')),
-])->fetchAll();
+class ReceiptsQueryBuilder {
 
-$ids = array_column($result, 'id');
+    public function getIdsFromFilter(Filter $filter): array
+    {
+        $sql[] = <<<MySQL
+            SELECT `id` FROM `fuel_receipts`
+            WHERE `gmt` BETWEEN :from AND :to
+            MySQL;
+
+        $params = [
+            'from' => $filter->from->format('Y-m-d H:i:s'),
+            'to' => $filter->to->format('Y-m-d H:i:s'),
+        ];
+
+        if ($filter->car_number ?? null) {
+            $params['license_plate'] = $filter->car_number;
+
+            $sql[] = <<<MySQL
+                AND `license_plate` = :license_plate
+                MySQL;
+        }
+
+        $result = \App\Core\DB::execute(implode("\n", $sql), $params)->fetchAll();
+
+        return array_column($result, 'id');
+    }
+}
+
+$filter = new Filter();
+$filter->from = new DateTimeImmutable('-1 week');
+$filter->to = new DateTimeImmutable('now');
+//$filter->car_number = 'KR-1916';
+$filter->car_number = 'G-01';
+
+$ids = (new ReceiptsQueryBuilder())->getIdsFromFilter($filter);
 
 $receipts = \App\Models\FuelReceipt::getArray($ids);
 
