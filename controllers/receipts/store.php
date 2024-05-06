@@ -8,10 +8,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ],
         'date_time' => [
             new \App\Core\Validation\Rules\Required(),
-            new \App\Core\validation\Rules\Date(
+            (new \App\Core\validation\Rules\Date(
                 format: 'Y-m-d\TH:i',
                 before: new DateTimeImmutable('now'),
-            ),
+            ))->withMessage('Date has to be in past'),
         ],
         'odometer' => [
             new \App\Core\Validation\Rules\Required(),

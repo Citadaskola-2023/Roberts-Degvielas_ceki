@@ -28,11 +28,13 @@ class Validation
 
             try {
                 foreach ($rules as $rule) {
+                    $msg = $rule->getCustomMessage();
                     $rule->check($value);
                 }
                 $validated[$field] = $value;
             } catch (\Exception $e) {
-                $this->errors[$field] = $e->getMessage();
+
+                $this->errors[$field] = $msg ?? $e->getMessage();
                 $this->failed = true;
             }
         }
