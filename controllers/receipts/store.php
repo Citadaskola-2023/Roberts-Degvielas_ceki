@@ -57,8 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $receipt->save();
 
         header("Location: /receipts");;
-    } else {
-        dump($validation->getErrors());
     }
 }
 

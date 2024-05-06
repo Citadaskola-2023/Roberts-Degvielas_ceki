@@ -5,6 +5,18 @@
 ?>
 
 <h1 class="text-3xl font-semibold mb-4">Fuel Receipt Form</h1>
+
+<?php if ($validation?->isFailed()) : ?>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+        <strong class="font-bold">Validation Error:</strong>
+        <ul class="mt-2">
+            <?php foreach ($validation->getErrors() as $key => $error) : ?>
+                <li><?= $key ?>: <?= $error ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
+
 <form action="/receipts/store" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
     <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="license_plate">License Plate:</label>
