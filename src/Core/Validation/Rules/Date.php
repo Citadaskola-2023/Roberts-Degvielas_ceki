@@ -2,6 +2,7 @@
 
 namespace App\Core\Validation\Rules;
 
+use App\Core\Helper\Time;
 use App\Core\Validation\Exceptions\ValidationException;
 use App\Core\Validation\Rule;
 
@@ -9,7 +10,7 @@ readonly class Date extends Rule
 {
 
     public function __construct(
-        private string $format = 'Y-m-d H:i:s',
+        private string $format = Time::DF,
         private ?\DateTimeImmutable $before = null,
         private ?\DateTimeImmutable $after = null,
     ) {

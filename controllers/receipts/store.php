@@ -1,15 +1,18 @@
 <?php
 
+use App\Core\Helper\Time;
+use \App\Core\Validation\Rules;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $validation = new \App\Core\Validation($_POST, [
         'license_plate' => [
-            new \App\Core\Validation\Rules\Required(),
-            new \App\Core\Validation\Rules\Between(min: 4),
+            new Rules\Required(),
+            new Rules\Between(min: 4),
         ],
         'date_time' => [
-            new \App\Core\Validation\Rules\Required(),
+            new Rules\Required(),
             (new \App\Core\validation\Rules\Date(
-                format: 'Y-m-d\TH:i',
+                format: Time::HTML,
                 before: new DateTimeImmutable('now'),
             ))->withMessage('Date has to be in past'),
             new \App\Models\FuelReceipt\Rules\IsNotDuplicate(
@@ -17,29 +20,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ),
         ],
         'odometer' => [
-            new \App\Core\Validation\Rules\Required(),
-            new \App\Core\Validation\Rules\Numeric(),
-            new \App\Core\Validation\Rules\Between(min: 0),
+            new Rules\Required(),
+            new Rules\Numeric(),
+            new Rules\Between(min: 0),
         ],
         'petrol_station' => [
-            new \App\Core\Validation\Rules\Required(),
+            new Rules\Required(),
         ],
         'fuel_type' => [
-            new \App\Core\Validation\Rules\Required(),
+            new Rules\Required(),
         ],
         'refueled' => [
-            new \App\Core\Validation\Rules\Required(),
-            new \App\Core\Validation\Rules\Numeric(),
-            new \App\Core\Validation\Rules\Between(min: 0),
+            new Rules\Required(),
+            new Rules\Numeric(),
+            new Rules\Between(min: 0),
         ],
         'total' => [
-            new \App\Core\Validation\Rules\Required(),
-            new \App\Core\Validation\Rules\Numeric(),
-            new \App\Core\Validation\Rules\Between(min: 0),
+            new Rules\Required(),
+            new Rules\Numeric(),
+            new Rules\Between(min: 0),
         ],
         'currency' => [
-            new \App\Core\Validation\Rules\Required(),
-            // new \App\Core\Validation\Rules\In(['EUR', 'USD']), // todo: implement
+            new Rules\Required(),
+            // new Rules\In(['EUR', 'USD']), // todo: implement
         ],
     ]);
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Core\Helper\Time;
+
 class Filter{
     public ?string $car_number = null;
     public DateTimeImmutable $from;
@@ -16,8 +18,8 @@ class ReceiptsQueryBuilder {
             MySQL;
 
         $params = [
-            'from' => $filter->from->format('Y-m-d H:i:s'),
-            'to' => $filter->to->format('Y-m-d H:i:s'),
+            'from' => $filter->from->format(Time::DF),
+            'to' => $filter->to->format(Time::DF),
         ];
 
         if ($filter->car_number ?? null) {

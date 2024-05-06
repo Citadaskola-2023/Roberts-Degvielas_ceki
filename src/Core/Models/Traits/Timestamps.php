@@ -2,6 +2,7 @@
 
 namespace App\Core\Models\Traits;
 
+use App\Core\Helper\Time;
 
 trait Timestamps
 {
@@ -11,7 +12,7 @@ trait Timestamps
     protected function timestamps(): void
     {
         if ($this->timestamps) {
-            $currentDateTime = gmdate('Y-m-d H:i:s');
+            $currentDateTime = gmdate(Time::DF);
             if ($this->hash ?? $this->id ?? null) {
                 $this->{static::FIELD_UPDATED_AT} = $currentDateTime;
             } else {
