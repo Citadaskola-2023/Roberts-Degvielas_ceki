@@ -9,7 +9,8 @@ services:
       - ./:/app
       - caddy_data:/data
       - caddy_config:/config
-      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./etc/caddy/Caddyfile:/etc/caddy/Caddyfile
+#      - /etc/php:/usr/local/etc/php/conf.d
     ports:
       - "80:80"
       - "443:443"
