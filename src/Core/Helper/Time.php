@@ -12,15 +12,12 @@ class Time
 
     public static function toUTC(string $dt, string $srcTz, string $format = self::DF): DateTimeImmutable
     {
-        return DateTimeImmutable::createFromFormat(
-            \App\Core\Helper\Time::HTML,
-            $dt,
-            new DateTimeZone($srcTz)
-        )->setTimezone(new DateTimeZone('UTC'));
+        return DateTimeImmutable::createFromFormat($format, $dt, new DateTimeZone($srcTz))
+            ->setTimezone(new DateTimeZone('UTC'));
     }
 
     public static function toUTCStr(string $dt, string $srcTz, string $format = self::DF): string
     {
-        return self::toUTC($dt, $srcTz)->format(\App\Core\Helper\Time::DF);
+        return self::toUTC($dt, $srcTz)->format($format);
     }
 }
