@@ -5,16 +5,22 @@ namespace App\Core;
 class Validation
 {
     private array $errors = [];
-
     private bool $failed = false;
     private array $unvalidated = [];
 
+    /** @var array<string, \App\Core\Validation\Rule[]> */
+    private array $rules;
+
+    /** @param  array<string, \App\Core\Validation\Rule[]>  $requestRules */
     public function __construct(
         private readonly array $request = [],
-
-        /** @var array<string, \App\Core\Validation\Rule[]> */
-        private readonly array $rules = [],
+        array $requestRules = [],
     ) {
+        foreach ($requestRules as $field => $rules) {
+            foreach ($rules as $rule) {
+                $this->rules[$field][] = $rule->withValidation($this);
+            }
+        }
     }
 
     public function validate(): array
@@ -56,5 +62,4 @@ class Validation
     {
         return $this->request[$field] ?? null;
     }
-
 }

@@ -12,6 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 format: 'Y-m-d\TH:i',
                 before: new DateTimeImmutable('now'),
             ))->withMessage('Date has to be in past'),
+            new \App\Models\FuelReceipt\Rules\IsNotDuplicate(
+                ['license_plate', 'date_time', 'fuel_type', 'refueled']
+            ),
         ],
         'odometer' => [
             new \App\Core\Validation\Rules\Required(),
