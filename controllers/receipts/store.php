@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $validation = new \App\Core\Validation($_POST, [
         'license_plate' => [
             new \App\Core\Validation\Rules\Required(),
-            new \App\Core\Validation\Rules\Between(4),
+            new \App\Core\Validation\Rules\Between(min: 4),
         ],
         'date_time' => [
             new \App\Core\Validation\Rules\Required(),
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ],
         'currency' => [
             new \App\Core\Validation\Rules\Required(),
-//            new \App\Core\Validation\Rules\In(['EUR', 'USD']),
+            // new \App\Core\Validation\Rules\In(['EUR', 'USD']), // todo: implement
         ],
     ]);
 
