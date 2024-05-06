@@ -2,6 +2,7 @@
 
 namespace App\Models\FuelReceipt\Rules;
 
+use App\Core\Helper\Time;
 use App\Core\Validation\Exceptions\ValidationException;
 use App\Core\Validation\Rule;
 
@@ -28,7 +29,7 @@ readonly class IsNotDuplicate extends Rule
         $params = [];
         foreach ($this->params as $param) {
             $params[$param] = match($param) {
-                'date_time' => \App\Core\Helper\Time::toUTCStr($this->getParamValue($param), 'Europe/Riga', \App\Core\Helper\Time::HTML),
+                'date_time' => Time::toUTC($this->getParamValue($param), 'Europe/Riga', Time::HTML)->format(Time::DF),
                 default => $this->getParamValue($param),
             };
         }
