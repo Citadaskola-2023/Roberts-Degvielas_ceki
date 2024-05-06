@@ -20,7 +20,7 @@ readonly class Between extends Rule
             throw new ValidationException('Rule is not defined properly');
         }
 
-        if (is_string($value)) {
+        if (is_string($value) && !is_numeric($value)) {
             return $this->isValidString($value);
         }
 
@@ -56,11 +56,11 @@ readonly class Between extends Rule
         $length = mb_strlen($value);
 
         if ($this->min && $length < $this->min) {
-            throw new ValidationException("String cannot be longer than $this->min characters");
+            throw new ValidationException("String cannot be shorter than $this->min characters");
         }
 
         if ($this->max && $length > $this->max) {
-            throw new ValidationException("String cannot be shorter than $this->max characters");
+            throw new ValidationException("String cannot be longer than $this->max characters");
         }
 
         return true;
